@@ -3,9 +3,6 @@ package com.example.mvc.model
 import com.example.mvc.annotation.StringFormatDateTime
 import com.fasterxml.jackson.databind.PropertyNamingStrategies
 import com.fasterxml.jackson.databind.annotation.JsonNaming
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import javax.validation.constraints.AssertTrue
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotEmpty
