@@ -3,10 +3,14 @@ package com.example.mvc.controller
 import com.example.mvc.model.Result
 import com.example.mvc.model.UserRequest
 import com.example.mvc.model.UserResponse
+import org.springframework.http.ResponseEntity
+import org.springframework.validation.BindingResult
+import org.springframework.validation.FieldError
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/api")
@@ -25,8 +29,21 @@ class PutApiController
     }
 
     @PutMapping("/put-mapping/object")
-    fun putMappingObject(@RequestBody ur: UserRequest): UserResponse
+    fun putMappingObject(@Valid @RequestBody ur: UserRequest, br: BindingResult): Any
     {
+        val msg = StringBuilder()
+        if(br.hasErrors())
+        {
+            for(e in br.allErrors)
+            {
+                val field = e as FieldError
+                val message = e.defaultMessage
+                msg.append(field.field + ": " + message + "\n")
+            }
+
+            return ResponseEntity.badRequest().body(msg.toString())
+        }
+
         return UserResponse().apply()
         {
             this.result = Result().apply()
