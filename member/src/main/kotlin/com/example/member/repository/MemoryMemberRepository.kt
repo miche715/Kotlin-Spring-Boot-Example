@@ -1,12 +1,11 @@
 package com.example.member.repository
 
 import com.example.member.doamin.Member
+import org.springframework.stereotype.Repository
 
-class MemoryMemberRepository : MemberRepository
+//@Repository
+class MemoryMemberRepository(val store: MutableMap<Long, Member> = mutableMapOf(), var sequence: Long = 0L) : MemberRepository
 {
-    private var store = mutableMapOf<Long, Member>()
-    private var sequence: Long = 0L
-
     override fun save(member: Member): Member
     {
         return Member().apply()

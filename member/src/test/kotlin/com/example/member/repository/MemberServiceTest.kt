@@ -21,7 +21,7 @@ class MemberServiceTest
     @BeforeEach
     fun init()
     {
-        service = MemberService()
+        service = MemberService(MemoryMemberRepository())
     }
 
     @Test
