@@ -1,9 +1,10 @@
 package com.example.member.repository
 
-import com.example.member.doamin.Member
+import com.example.member.domain.Member
+import org.springframework.beans.factory.annotation.Autowired
 import javax.persistence.EntityManager
 
-class JPAMemberRepository(private var em: EntityManager) : MemberRepository
+class JPAMemberRepository(@Autowired private var em: EntityManager) : MemberRepository
 {
     override fun save(member: Member): Member
     {
@@ -21,13 +22,13 @@ class JPAMemberRepository(private var em: EntityManager) : MemberRepository
     {
         val result = em.createQuery("select m from Member m where m.name = :name", Member::class.java).setParameter("name", name).resultList
 
-        if(result.size > 0)
+        return if(result.size > 0)
         {
-            return result[0]
+            result[0]
         }
         else
         {
-            return null
+            null
         }
     }
 

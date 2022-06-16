@@ -1,6 +1,6 @@
 package com.example.member.repository
 
-import com.example.member.doamin.Member
+import com.example.member.domain.Member
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

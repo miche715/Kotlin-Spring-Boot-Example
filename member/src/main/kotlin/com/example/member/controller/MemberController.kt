@@ -1,27 +1,25 @@
 package com.example.member.controller
 
-import com.example.member.doamin.Member
-import com.example.member.repository.MemoryMemberRepository
+import com.example.member.domain.Member
 import com.example.member.service.MemberService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
-class MemberController
+@RequestMapping("/member-application")
+class MemberController(@Autowired private val memberService: MemberService)
 {
-    @Autowired
-    private val memberService = MemberService(MemoryMemberRepository())
-
-    @GetMapping("/members/new")
+    @GetMapping("/members/join")
     fun creatForm(): String
     {
-        return "create-member-form"
+        return "member-join"
     }
 
-    @PostMapping("/members/new")
+    @PostMapping("/members/join")
     fun create(name: String): String
     {
         Member().apply()
@@ -32,10 +30,10 @@ class MemberController
             memberService.join(this)
         }
 
-        return "redirect:/"
+        return "redirect:/member-application"
     }
 
-    @GetMapping("/members")
+    @GetMapping("/members/list")
     fun memberList(model: Model): String
     {
         val members = memberService.findMembers()
@@ -44,5 +42,4 @@ class MemberController
 
         return "member-list"
     }
-
 }

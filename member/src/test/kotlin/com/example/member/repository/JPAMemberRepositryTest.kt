@@ -1,12 +1,11 @@
 package com.example.member.repository
 
-import com.example.member.doamin.Member
+import com.example.member.domain.Member
 import com.example.member.service.MemberService
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.annotation.Commit
 import javax.transaction.Transactional
 
 @SpringBootTest

@@ -1,6 +1,6 @@
 package com.example.member.repository
 
-import com.example.member.doamin.Member
+import com.example.member.domain.Member
 
 interface MemberRepository
 {

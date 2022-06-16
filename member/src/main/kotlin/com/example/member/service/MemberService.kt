@@ -1,11 +1,12 @@
 package com.example.member.service
 
-import com.example.member.doamin.Member
+import com.example.member.domain.Member
 import com.example.member.repository.MemberRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.transaction.annotation.Transactional
 
 @Transactional
-class MemberService(private var memberRepository: MemberRepository)
+class MemberService(@Autowired private var memberRepository: MemberRepository)
 {
     fun join(member: Member): Long
     {
@@ -14,10 +15,10 @@ class MemberService(private var memberRepository: MemberRepository)
             null -> {
                 with(memberRepository.save(member))
                 {
-                    this.id!!
+                    this.id!!  // DB에 중복되는 이름이 없어 가입 허용.
                 }
             }
-            else -> 0  // throw IllegalStateException("이미 존재하는 이름입니다.")
+            else -> 0  // DB에 중복되는 이름이 있으므로 가입 거절.
         }
     }
 
