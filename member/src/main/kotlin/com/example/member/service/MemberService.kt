@@ -1,12 +1,11 @@
 package com.example.member.service
 
 import com.example.member.doamin.Member
-import com.example.member.repository.MemoryMemberRepository
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Service
+import com.example.member.repository.MemberRepository
+import org.springframework.transaction.annotation.Transactional
 
-//@Service
-class MemberService(val memberRepository: MemoryMemberRepository)
+@Transactional
+class MemberService(private var memberRepository: MemberRepository)
 {
     fun join(member: Member): Long
     {

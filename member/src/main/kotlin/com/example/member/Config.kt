@@ -1,13 +1,21 @@
 package com.example.member
 
+import com.example.member.repository.JPAMemberRepository
+import com.example.member.repository.MemberRepository
 import com.example.member.repository.MemoryMemberRepository
 import com.example.member.service.MemberService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import javax.persistence.EntityManager
 
 @Configuration
-class Config
+class Config(private var em: EntityManager)
 {
+
+
+
+
     @Bean
     fun memberService(): MemberService
     {
@@ -15,8 +23,9 @@ class Config
     }
 
     @Bean
-    fun memberRepository(): MemoryMemberRepository
+    fun memberRepository(): MemberRepository
     {
-        return MemoryMemberRepository()
+        //return MemoryMemberRepository()
+        return JPAMemberRepository(em)
     }
 }

@@ -27,9 +27,9 @@ class MemberController
         Member().apply()
         {
             this.name = name
-        }.also()
+        }.run()
         {
-            memberService.join(it)
+            memberService.join(this)
         }
 
         return "redirect:/"

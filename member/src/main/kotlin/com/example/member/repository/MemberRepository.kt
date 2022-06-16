@@ -1,7 +1,6 @@
 package com.example.member.repository
 
 import com.example.member.doamin.Member
-import java.util.Optional
 
 interface MemberRepository
 {
